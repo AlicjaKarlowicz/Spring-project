@@ -1,5 +1,9 @@
 package io.lab.springdatalab.service.customer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import io.lab.springdatalab.model.Customer;
 import io.lab.springdatalab.repository.CustomerRepo;
 import io.lab.springdatalab.service.customer.CustomerService;
@@ -25,4 +29,11 @@ public class CustomerServiceIml implements CustomerService {
     public Optional<Customer> getCustomer(long id) {
         return customerRepo.findById(id);
     }
+
+//    @Override
+//    public Customer applyPatchToCustomer(
+//            JsonPatch patch, Customer targetCustomer) throws JsonPatchException, JsonProcessingException {
+//        JsonNode patched = patch.apply(objectMapper.convertValue(targetCustomer, JsonNode.class));
+//        return objectMapper.treeToValue(patched, Customer.class);
+//    }
 }

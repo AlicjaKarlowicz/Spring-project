@@ -27,16 +27,9 @@ public class OrderController {
     public Optional<Order> getOrderById(@RequestParam Long id){
         return orderService.getOrder(id);
     }
-
-    @PostMapping
-    public Order addOrder(@RequestBody Order order){
-        return orderService.saveOrder(order);
-    }
-
     @PutMapping
     public Order updateOrder(@RequestBody Order order){
         return orderService.saveOrder(order);
     }
-
 
 }
