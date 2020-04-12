@@ -4,11 +4,9 @@ import io.lab.springdatalab.model.Order;
 import io.lab.springdatalab.service.order.OrderService;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -29,4 +27,16 @@ public class OrderController {
     public Optional<Order> getOrderById(@RequestParam Long id){
         return orderService.getOrder(id);
     }
+
+    @PostMapping
+    public Order addOrder(@RequestBody Order order){
+        return orderService.saveOrder(order);
+    }
+
+    @PutMapping
+    public Order updateOrder(@RequestBody Order order){
+        return orderService.saveOrder(order);
+    }
+
+
 }

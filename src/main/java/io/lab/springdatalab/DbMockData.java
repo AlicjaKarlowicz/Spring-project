@@ -36,6 +36,7 @@ public class DbMockData {
         Product p3 = new Product("BIALETTI Milano Roma 250g", 26.00f,true);
         Product p4 = new Product("TEAPIGS Chai Tea", 59.00f,false);
         Customer customer = new Customer("Janina Kowalczuk", "Wrocław");
+        Customer customer2 = new Customer("Monika Stefańska", "Wrocław");
         Set<Product> products = new HashSet<>() {
             {
                 add(p1);
@@ -47,7 +48,10 @@ public class DbMockData {
 
         productRepository.save(p1);
         productRepository.save(p2);
+        productRepository.save(p3);
+        productRepository.save(p4);
         customerRepository.save(customer);
+        customerRepository.save(customer2);
         orderRepository.save(order);
     }
 }

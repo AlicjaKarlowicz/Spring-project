@@ -26,4 +26,9 @@ public class OrderServiceIml implements OrderService {
     public Optional<Order> getOrder(long id) {
         return orderRepo.findById(id);
     }
+
+    @Override
+    public Order saveOrder(Order order) {
+        return orderRepo.save(order);
+    }
 }
