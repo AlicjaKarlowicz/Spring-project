@@ -9,7 +9,7 @@ public interface OrderService {
 
     Iterable<Order> getAllOrders();
 
-    Optional<Order> getOrder(long id);
+    Order getOrder(long id);
 
     Order saveOrder(Order order);
 }

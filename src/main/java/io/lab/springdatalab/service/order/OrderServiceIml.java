@@ -1,9 +1,11 @@
 package io.lab.springdatalab.service.order;
 
+import io.lab.springdatalab.exception.ResourceNotFound;
 import io.lab.springdatalab.model.Customer;
 import io.lab.springdatalab.model.Order;
 import io.lab.springdatalab.repository.OrderRepo;
 import io.lab.springdatalab.service.order.OrderService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,8 @@ public class OrderServiceIml implements OrderService {
     }
 
     @Override
-    public Optional<Order> getOrder(long id) {
-        return orderRepo.findById(id);
+    public Order getOrder(long id) {
+        return orderRepo.findById(id).orElseThrow(ResourceNotFound::new);
 
     }
 

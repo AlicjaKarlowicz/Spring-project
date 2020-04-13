@@ -3,27 +3,34 @@ package io.lab.springdatalab.controller;
 import io.lab.springdatalab.model.Product;
 import io.lab.springdatalab.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping(value ="/all")
+    @GetMapping(value ="/product/all")
     public Iterable<Product> getProducts() {
         return productService.getAllProducts();
     }
 
-    @GetMapping
-    public Optional<Product> getProductById(@RequestParam Long id) {
+    @GetMapping(value = "/product")
+    public Product getProductById(@RequestParam Long id) {
         return productService.getProduct(id);
     }
+
+    @PostMapping(value = "/admin/product")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.saveProduct(product);
+    }
+
+    @PutMapping(value = "/admin/product")
+    public Product updateProduct(@RequestParam Long id, @RequestBody Product product) {
+        Product p = productService.getProduct(id);
+        return productService.saveProduct(p);
+    }
+
 }
