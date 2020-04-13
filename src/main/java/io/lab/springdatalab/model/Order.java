@@ -1,5 +1,8 @@
 package io.lab.springdatalab.model;
 
+import io.lab.springdatalab.model.Customer;
+import io.lab.springdatalab.model.Product;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
