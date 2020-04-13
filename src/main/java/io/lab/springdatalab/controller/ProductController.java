@@ -30,7 +30,7 @@ public class ProductController {
     @PutMapping(value = "/admin/product")
     public Product updateProduct(@RequestParam Long id, @RequestBody Product product) {
         Product p = productService.getProduct(id);
-        return productService.saveProduct(p);
+        return productService.saveProduct(product);
     }
 
 }

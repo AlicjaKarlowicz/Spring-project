@@ -38,8 +38,8 @@ public class CustomerController {
 
     @PutMapping(value = "/admin/customer")
     public Customer updateCustomer(@RequestParam Long id, @RequestBody Customer customer) {
-        Customer c = customerService.getCustomer(id);
-        return customerService.saveCustomer(c);
+        customerService.getCustomer(id);
+        return customerService.saveCustomer(customer);
     }
 
     @PatchMapping(value = "/admin/customer",consumes = "application/json-patch+json")
@@ -50,7 +50,6 @@ public class CustomerController {
             customerService.saveCustomer(customerPatched);
 
             return ResponseEntity.ok(customerPatched);
-
     }
 
     private Customer applyPatchToCustomer(JsonPatch patch, Customer targetCustomer) throws JsonPatchException, JsonProcessingException {
