@@ -13,7 +13,7 @@ public class OrderController {
     private OrderService orderService;
 
 
-    @GetMapping(value = "all")
+    @GetMapping(value = "/all")
     public Iterable<Order> getOrders() {
         return orderService.getAllOrders();
     }

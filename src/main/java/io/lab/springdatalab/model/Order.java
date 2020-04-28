@@ -27,6 +27,15 @@ public class Order {
     public Order() {
     }
 
+
+    public Order(Customer customer, Set<Product> products) {
+        this.customer = customer;
+        this.products = products;
+        this.placeDate = LocalDateTime.now();
+        this.status = "in progress";
+    }
+
+
     public Order(Customer customer, Set<Product> products,LocalDateTime placeDate, String status) {
         this.customer = customer;
         this.products = products;

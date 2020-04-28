@@ -18,6 +18,10 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(Long id) {
+        this.id = id;
+    }
+
     public Customer(String name, String address) {
         this.name = name;
         this.address = address;

@@ -1,11 +1,13 @@
 package io.lab.springdatalab;
 
+import io.lab.springdatalab.model.*;
+import io.lab.springdatalab.model.user.User;
+import io.lab.springdatalab.model.user.UserDto;
+import io.lab.springdatalab.model.user.UserDtoBuilder;
 import io.lab.springdatalab.repository.CustomerRepo;
 import io.lab.springdatalab.repository.OrderRepo;
 import io.lab.springdatalab.repository.ProductRepo;
-import io.lab.springdatalab.model.Customer;
-import io.lab.springdatalab.model.Order;
-import io.lab.springdatalab.model.Product;
+import io.lab.springdatalab.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -21,12 +23,14 @@ public class DbMockData {
     private ProductRepo productRepository;
     private OrderRepo orderRepository;
     private CustomerRepo customerRepository;
+    private UserRepo userRepository;
 
     @Autowired
-    public DbMockData(ProductRepo productRepository, OrderRepo orderRepository, CustomerRepo customerRepository) {
+    public DbMockData(ProductRepo productRepository, OrderRepo orderRepository, CustomerRepo customerRepository, UserRepo userRepository) {
         this.productRepository = productRepository;
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
+        this.userRepository = userRepository;
     }
 
     @EventListener(ApplicationReadyEvent.class)
@@ -46,6 +50,14 @@ public class DbMockData {
             }};
 
         Order order = new Order(customer, products, LocalDateTime.now(), "in progress");
+
+
+        UserDtoBuilder builder = new UserDtoBuilder();
+        UserDto userAdmin = builder.userToUserDto(new User("admin","passwordAdmin","ROLE_ADMIN"));
+        UserDto userCustomer = builder.userToUserDto(new User("customer","passwordCustomer","ROLE_CUSTOMER"));
+
+        userRepository.save(userAdmin);
+        userRepository.save(userCustomer);
 
         productRepository.save(p1);
         productRepository.save(p2);

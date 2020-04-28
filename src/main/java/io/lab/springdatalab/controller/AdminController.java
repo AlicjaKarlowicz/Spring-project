@@ -12,6 +12,7 @@ import io.lab.springdatalab.service.customer.CustomerService;
 import io.lab.springdatalab.service.order.OrderService;
 import io.lab.springdatalab.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,7 +92,7 @@ public class AdminController {
     //product
 
 
-    @PostMapping(value = "/product")
+    @PostMapping("/product")
     public Product createProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
